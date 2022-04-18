@@ -2,13 +2,17 @@ const path = require('path');
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const yargs = require('yargs');
 
 const webpack = require('webpack');
 
+const argv = yargs.argv;
+const isDev = argv.mode === 'development';
+
 module.exports = {
+  devtool:  'source-map',
   entry: {
     core : ['./assets/js/src/main.js', '/assets/css/src/style.scss'], 
-    homepage : ['./assets/js/src/frontpage.js', './assets/css/src/frontpage.scss']
   },
   output: {
     filename: './assets/js/build/bundle.[name].min.js',
@@ -16,26 +20,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: require.resolve('jquery'),
-        use: [
-          {
-            loader: 'expose-loader',
-            options: {
-              exposes: [
-                {
-                  globalName: '$',
-                  override: true,
-                },
-                {
-                  globalName: 'jQuery',
-                  override: true,
-                },
-              ],
-            },
-          },
-        ],
-      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -48,11 +32,44 @@ module.exports = {
       },
       {
         test: /\.(sass|scss)$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        use: [ 
+          MiniCssExtractPlugin.loader, 
+          'css-loader', 
+          'sass-loader'
+        ]
+      },
+      {
+        test: [
+          /\.bmp$/,
+          /\.gif$/,
+          /\.jpe?g$/,
+          /\.png$/,
+          /\.tiff$/,
+          /\.ico$/,
+          /\.avif$/,
+          /\.webp$/,
+          /\.eot$/,
+          /\.otf$/,
+          /\.ttf$/,
+          /\.woff$/,
+          /\.woff2$/,
+          /\.svg$/
+        ],
+        exclude: [/\.(js|mjs|jsx|ts|tsx)$/],
+        type: 'asset/resource',
+        generator: {
+          filename: 'static/img/[name][ext]'
+        }
       }
     ]
   },
   plugins: [
+
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery"
+    }),
+
     new MiniCssExtractPlugin({
       filename: './assets/css/build/[name].min.css'
     }),  
@@ -62,7 +79,7 @@ module.exports = {
     })
   ],
   optimization: {
-    minimize: true,
+    minimize: false,
     minimizer: [
       new TerserPlugin()
     ]
