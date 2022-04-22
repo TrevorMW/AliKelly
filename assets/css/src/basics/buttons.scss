@@ -5,38 +5,60 @@
   display:inline-block;
   width:auto;
   padding:15px 30px;
-  border-radius:2px;
   background-color:$btn-base-color;
   color:$btn-text;
   text-transform: uppercase;
-  letter-spacing:1px;
-  font-weight:300;
-  border:0;
+  letter-spacing:2px;
+  font-weight:400;
+  font-size:.78rem;
+  min-width:220px;
+  text-align: center;
   cursor:pointer;
   transition: all 1s ease;
 
   &:hover{
     background-color:$btn-hover;
-    color:#fff;
   }
 
   &.btn-primary{
-    background-color:$darkRed;
-    color:$sand;
+    background-color:$azure;
+    color:$darkGray;
 
     &:hover{
-      background-color:lighten($darkRed, 10%);
+      background-color:lighten($azure, 10%);
     }
   }
 
   &.btn-secondary{
-    background-color:$sand;
-    color:darken($sand, 30%);
+    background-color:$sage;
+    color:$white;
 
     &:hover{
-      background-color:lighten($darkRed, 10%);
+      background-color:lighten($sage, 10%);
     }
   }
+
+  &.btn-tertiary{
+    background-color:$smoke;
+    border-color:$smoke;
+    color:$darkGray;
+
+    &:hover{
+      background-color:$linen;
+      border-color:$linen;
+    }
+  }
+
+  &.btn-big{
+    font-size:1rem;
+    padding:13px 30px;
+  }
+
+  &.btn-small{
+    font-size:.6rem;
+    padding:16px 30px 17px;
+  }
+
 
   .hero &{
     width:100%;

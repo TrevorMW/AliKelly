@@ -15,52 +15,61 @@
 </head>
 <body <?php body_class(); ?>>
 
-	<div class="wrapper headerBar">
-		<header class="container flexed">
-			<div class="logo">
-				<a href="/"><img src="<?php echo get_template_directory_uri() ?>/assets/static/img/croppedChalklineLogo.png" alt=""/></a>
-				<h1 class="screenReader">COMPANY TITLE</h1>
+	<header class="wrapper">
+		<div class="wrapper white desktopHeader">
+			<?php //var_dump(has_nav_menu('primary-right')); ?>
+			<div class="container flexed">
+				<div class="navLeft">
+					<nav>
+						<ul>
+							<?php wp_nav_menu(array(
+								'theme_location' => 'primary-left',
+								'menu'           => 'primary-left',
+								'container'      => false,
+								'items_wrap'     => '%3$s',
+								'depth'          => 0
+							)) ?>
+						</ul>
+					</nav>
+				</div>
+				<div id="logoBox">
+					<a href="<?php echo home_url();?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/static/images/alikelly_logo.png" alt="" title="" /></a>
+					<h1 class="acc">Ali Kelly</h1>
+				</div>
+				<div class="navRight">
+					<nav>
+						<ul>
+							<?php wp_nav_menu(array(
+								'theme_location' => 'primary-right',
+								'menu'           => 'primary-right',
+								'container'      => false,
+								'items_wrap'     => '%3$s',
+								'depth'          => 0
+							)) ?>
+						</ul>
+					</nav>
+				</div>
 			</div>
-			<div class="alignRight">
-				<nav class="mainNav">
-					<ul>
-						<?php wp_nav_menu(array(
-							'menu'           => 'primary',
-							'theme_location' => 'primary',
-							'container'      => false,
-							'items_wrap'     => '%3$s',
-							'depth'          => 0
-						)) ?>
-						<li><a href data-search-trigger><i class="fa fa-search"></i></a></li>
-					</ul>
-				</nav>
+		</div>
+		<div class="wrapper white mobileHeader">
+			<div class="container flexed">
+				<div id="logoBox">
+					<a href="<?php echo home_url();?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/static/images/alikelly_logo.png" alt="" title="" /></a>
+					<h1 class="acc">Ali Kelly</h1>
+				</div>
+				<div class="">
+					<a href="#" data-search-trigger><i class="fa fa-fw fa-search"></i></a>
+				</div>
+				<div class="">
+					<a href="#" data-mobile-nav-trigger><i class="fa fa-fw fa-bars"></i></a>
+				</div>
 			</div>
-		</header>
-	</div>
+		</div>
+		
+	</header>
 
 <?php if(is_front_page()){ ?> 
-<main>
-<?php } else { 
-	
-// $blog_id = get_option('page_for_posts');
-
-// if(is_home()){
-// 	$post = get_post( $blog_id );
-// }
-
-?> 
-
-<div class="hero basicHero">
-	<div class="hero-inner">
-		<div class="hero-body">
-			<h1 class="hero-heading" style="color:#fff;"><?php echo $post->post_title ?></h1>
-		</div>
-	</div>
-	<picture>
-		<img src="<?php echo get_template_directory_uri() ?>/assets/static/img/workbelt-original.jpg" alt="Shop Nixon Great Minds Gifts">
-	</picture>
-</div>
-<main class="wrapper mainContent">
-    <div class="container small">  
-
-<?php } wp_reset_postdata(); ?>
+	<main class="wrapper homepage">
+<?php } else { ?>
+	<main class="wrapper innerpage">
+<?php } ?>

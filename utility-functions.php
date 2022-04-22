@@ -76,63 +76,12 @@ function formatted_pagination($data)
 /**
  * 
  */
-function get_template_part_with_data($slug = null, $name = null, array $params = array())
-{
-  global $posts, $post, $wp_did_header, $wp_query, $wp_rewrite, $wpdb, $wp_version, $wp, $id, $comment, $user_ID;
-
-  do_action("get_template_part_{$slug}", $slug, $name);
-
-  $templates = array();
-  if (isset($name))
-    $templates[] = "/views/{$slug}-{$name}.php";
-
-  $templates[] = "/views/{$slug}.php";
-
-  $_template_file = locate_template($templates, false, false);
-
-  if (is_array($wp_query->query_vars)) {
-    extract($wp_query->query_vars, EXTR_SKIP);
-  }
-  extract($params, EXTR_SKIP);
-
-  require($_template_file);
-}
-
-/**
- * 
- */
 function __is_blog()
 {
   global $post;
   $posttype = get_post_type($post);
   return (((is_archive()) || (is_home())) && ($posttype == 'post')) ? true : false;
 }
-
-/**
- * 
- */
-function get_array_from_object($array = array())
-{
-  $result = array();
-
-  if (is_array($array)) {
-    foreach ($array as $obj) {
-      $result[$obj->ID] = $obj->post_title;
-    }
-  }
-
-  return $result;
-}
-
-/**
- * 
- */
-function var_template_include($t)
-{
-  $GLOBALS['current_theme_template'] = basename($t);
-  return $t;
-}
-add_filter('template_include', 'var_template_include', 1000);
 
 
 /**
@@ -170,7 +119,7 @@ function add_style_sheets()
     wp_enqueue_style('fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', 'screen');
     wp_enqueue_style(
       'googleFonts',
-      '//fonts.googleapis.com/css?family=Italiana|Maven Pro:400,700&ver=1.0.0',
+      '//fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@1,400;1,500&family=Montserrat:wght@300;400;600&display=swap',
       'screen'
     );
 
@@ -198,6 +147,7 @@ function load_custom_wp_admin_style()
 function add_javascript()
 {
   $app_base = get_template_directory_uri() . '/assets/js/build';
+  $depURL   = '/bundle.core.min.js';
 
   if (!is_admin()) {
     wp_enqueue_script(
@@ -207,18 +157,19 @@ function add_javascript()
       true,
       null
     );
+
     wp_enqueue_script(
       'coreJS',
-      get_template_directory_uri() . '/assets/js/build/bundle.core.min.js',
+      get_template_directory_uri() . '/assets/js/build' . $depURL,
       array('jquery'),
-      true,
+      THEME_VERSION,
       null
     );
 
     wp_localize_script('coreJS', 'core', array(
       'ajaxUrl' => get_template_directory_uri() . '/ajax.php',
       'baseUrl' => $app_base,
-      'deps'    => array($app_base . '/bundle.core.min.js')
+      'deps'    => array($app_base . $depURL)
     ));
 
     
@@ -250,10 +201,9 @@ remove_filter('comment_text', 'capital_P_dangit');
  * REGISTER NAV MENUS FOR HEADER FOOTER AND UTILITY
  */
 register_nav_menus(array(
-  'primary' => __('Primary Menu', 'themename'),
-  'utility' => __('Utility Menu', 'themename'),
-  'footer' => __('Footer Menu', 'themename'),
-  'footer-utility' => __('Footer Utility Menu', 'themename'),  
+  'primary-left'      => __('Primary Menu Left', 'themename'),
+  'primary-right'     => __('Primary Menu Right', 'themename'),
+  'mobile'         => __('Mobile Nav', 'themename') 
 ));
 
 
@@ -308,6 +258,7 @@ add_filter( 'comments_open', 'filter_media_comment_status', 10 , 2 );
 
 // Disables the block editor from managing widgets in the Gutenberg plugin.
 add_filter( 'gutenberg_use_widgets_block_editor', '__return_false' );
+
 // Disables the block editor from managing widgets.
 add_filter( 'use_widgets_block_editor', '__return_false' );
 

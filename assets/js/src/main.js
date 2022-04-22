@@ -1,7 +1,14 @@
-import Basic from './core/basic';
+import MobileNav from './core/mobile-nav';
+import ScrollAnimations from './core/scroll-animations';
 
-(() => { 
-    "use strict";
+import Waypoints from '../../../node_modules/waypoints/lib/jquery.waypoints';
 
-    const basic = new Basic();
+(() => {
+	'use strict';
+
+	$(document).ready(() => {
+		new MobileNav();
+        new ScrollAnimations();
+        
+	});
 })();
