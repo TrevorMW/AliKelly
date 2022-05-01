@@ -1,38 +1,26 @@
-<?php $html = $title = $content = $direction = $link = '';
+<?php if( is_array( $hero ) ) { ?> 
 
-if( is_array( $hero ) )
-{
-  global $post;
+  <div class="wrapper hero">
+      <div class="heroInner">
+        <div class="heroBody">
+          <?php echo $hero['text'];?>
+        </div>
+      </div> 
+      <div class="heroImage">
+        <?php if($hero['desktopImage']) {?> 
+          <div class="desktopImage">
+            <img src="<?php echo $hero['desktopImage']['url']; ?>" alt="<?php echo $hero['desktopImage']['alt']; ?>" title="<?php echo $hero['desktopImage']['title']; ?>" />
+          </div>
+        <?php } ?>
 
-  $direction = $hero['layout'];
-
-  if( $hero['add_cta'] )
-  {
-    $link .= '<a href="'.$hero['cta_link'].'" class="btn ">'.$hero['cta_text'].'</a>';
-  }
-
-  $html .= '<div class="wrapper" data-hero data-hero-off="'.$hero['hero_turns_off'].'">';
-
-    $html .= '<div class="hero-img" data-hero-img><img src="'.$hero['img']['url'].'" height="'.$hero['img']['height'].'" width="'.$hero['img']['width'].'" alt="" /></div>';
-
-    if( $hero['heading'] != '' )
-    {
-      $html .= '<div class="table" data-hero-overlay>';
-
-        $html .= '<div class="table-cell hero-inner">';
-
-          $html .= '<div class="container small '.$direction.'">';
-
-            $html .= '<div class="hero-content">'.$hero['heading'].$link.'</div>';
-
-          $html .= '</div>';
-
-        $html .= '</div>';
-
-      $html .= '</div>';
-    }
-
-  $html .= '</div>';
-}
+        <?php if($hero['mobileImage']) {?> 
+          <div class="mobileImage">
+            <img src="<?php echo $hero['mobileImage']['url']; ?>" alt="<?php echo $hero['mobileImage']['alt']; ?>" title="<?php echo $hero['mobileImage']['title']; ?>" />
+          </div>
+        <?php } ?>
+      </div>
+  </div>
+  
+<?php }
 
 echo $html;

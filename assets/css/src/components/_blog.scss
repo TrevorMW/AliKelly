@@ -1,0 +1,143 @@
+.blogPostGrid{
+
+    @media only screen and (min-width:768px){
+        display: flex;
+        gap:28px;
+        flex-wrap:wrap;
+    }
+}
+
+.blogPost{
+    display: block;
+    width:100%;
+    max-width:100%;
+    border:1px solid #eee;
+    background-color:$white;
+    position: relative;
+    margin-bottom:28px;
+
+    & .postImage{
+        border-bottom:1px solid #eee;
+        min-height:200px;
+        max-height: 200px;
+        overflow: hidden;
+    }
+
+    & .postContent{
+        padding:21px;
+    }
+
+    & .postEntry{
+        margin-bottom:14px;
+    }
+
+    & .postReadMore{
+
+        & .btn{
+            width:100%;
+        }
+    }
+
+    @media only screen and (min-width:768px){
+        margin-bottom:0;
+        flex:1;
+        max-width:33%;
+
+        & .postHeader{
+            min-height:60px;
+        }
+    
+        & .postEntry{
+            min-height:110px;
+            margin-bottom:14px;
+        }
+    }
+}
+
+.postMeta,
+.entryMeta{
+    margin-bottom:14px;
+    color:darken($linen, 15%);
+    font-family:$special;
+    font-size:.75rem;
+}
+
+.entryMeta{
+    margin-top:21px;
+    text-align: center;
+}
+
+.blogPostsTools{
+
+    & aside {
+        display: block;
+        width:100%;
+    }
+
+    & header{
+        display: block;
+    }
+    
+    @media only screen and (min-width:768px){
+
+        & aside{
+            flex: 0 0 250px;
+            order:2;            
+        }
+
+        & header{
+            flex: 1;
+            max-width: 75%;
+            order:1;
+            padding-right:21px;
+        }
+    }
+}
+
+aside.widget_categories{
+    overflow-x:scroll;
+    display: none;
+
+    @media only screen and (min-width:768px){
+        border:1px solid blue;
+        display: block;
+    }
+}
+
+.entryHeader{
+    text-align:center;
+}
+
+.postHeader{
+    margin-bottom:14px;
+}
+
+.pageContent,
+.entryContent{
+
+    & img{
+        width:100%;
+
+        &.alignright,
+        &.alignleft{
+            margin: 0 0 14px 0;
+        }  
+    }
+
+    @media only screen and (min-width:768px){
+        
+        & img{
+            width:auto;
+
+            &.alignleft{
+                float: right;
+                margin: 0 14px 14px 0;
+            }
+
+            &.alignright{
+                float: right;
+                margin: 0 0 14px 14px ;
+            }
+        }
+    }
+}

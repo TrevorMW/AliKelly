@@ -29,6 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 class Template_Helper
 {
+  const BASE_URL = '/assets/views/';
 
   public static function fileName( $name ){
 
@@ -55,10 +56,16 @@ class Template_Helper
    * @param null $params
    * @return string
    */
-  public static function loadView( $name, $params = null )
+  public static function loadView( $name, $altUrl = null, $params = null )
   {
     $html = '';
-    $file = get_template_directory() . '/assets/views/' . self::fileName( $name );
+    $url  = self::BASE_URL;
+
+    if( $altUrl !== null){
+      $url = $altUrl;
+    }
+
+    $file = get_template_directory() . $url . self::fileName( $name );
 
     $params != null ? extract( $params, EXTR_SKIP ) : '' ;
 
@@ -79,4 +86,5 @@ class Template_Helper
 
     return $html;
   }
+
 }

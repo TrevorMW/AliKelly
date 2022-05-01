@@ -121,6 +121,28 @@ function prfx_add_custom_post_states($states) {
 add_filter('display_post_states', 'prfx_add_custom_post_states');
 
 
+function wpse_99333_hide_admin_bar_from_front_end(){
+  if ( is_blog_admin() ) {
+    return true;
+  }
+  remove_action( 'wp_head', '_admin_bar_bump_cb' );
+  return false;
+}
+add_filter( 'show_admin_bar', 'wpse_99333_hide_admin_bar_from_front_end' );
+
+
+function custom_search_form( $form ) {
+  $form = '<form role="search" method="get" id="searchform" class="searchForm" action="' . home_url( '/' ) . '" >
+              <div class="inlineFormElements">
+                <label class="acc" for="s">' . __( 'Search:' ) . '</label>
+                <input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="Search Posts..." />
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </div>
+            </form>';
+
+  return $form;
+}
+add_filter( 'get_search_form', 'custom_search_form', 40 );
 
 
 

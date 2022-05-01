@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@1,400;1,500&family=Montserrat:wght@300;400;600&display=swap');
 
 /* COLORS */
 $black: #222;
-$darkGray:#343434;
+$darkGray:#444;
 $gray: #ccc;
 $lightGray: #eee;
 $white:#fff;
 
-$smoke:#f9f7f6;
+$smoke:#fdfcfc;
 $linen:#edeae8;
 $sand: #eae3db;
 
@@ -20,8 +21,8 @@ $darkRed:$error;
 
 
 /* FONTS */
-$heading: 'Cardo', serif;
-$base: 'Montserrat', sans-serif;
+$heading: 'Montserrat', sans-serif;
+$base: 'Cardo', serif;
 $special: 'Lora', serif;
 
 

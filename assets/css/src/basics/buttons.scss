@@ -1,6 +1,7 @@
 @import 'variables';
 
-.btn{
+.btn,
+button{
   font-family:$base; 
   display:inline-block;
   width:auto;
@@ -14,7 +15,10 @@
   min-width:220px;
   text-align: center;
   cursor:pointer;
-  transition: all 1s ease;
+  transition: all .5s ease;
+  border:0;
+  font-family:$heading;
+
 
   &:hover{
     background-color:$btn-hover;
@@ -49,7 +53,18 @@
     }
   }
 
-  &.btn-big{
+  &.btn-oregano{
+    background-color:$oregano;
+    border-color:$oregano;
+    color:$white;
+
+    &:hover{
+      background-color:lighten($oregano, 10%);
+      border-color:lighten($oregano, 10%);
+    }
+  }
+
+  &.btn-large{
     font-size:1rem;
     padding:13px 30px;
   }
@@ -59,38 +74,41 @@
     padding:16px 30px 17px;
   }
 
-
-  .hero &{
+  &.btn-full-width{
     width:100%;
-    max-width:75vw;
-    margin-bottom:15px;
   }
 
-  .ctaBar &{
-    display: block;
-    width:100%;
-    
-    &:first-child{
-      margin-bottom:14px;
-    }
+  .featuredPostContent &,
+  .searchForm &{
+    min-width:0;
   }
 
   @media only screen and (min-width:768px){
 
-    .ctaBar &{
-      display: inline-block;
-      width:auto;
-      margin-bottom:0;
-
-      &:first-child{
-        margin-bottom:0;
-      }
+    .contactMethods &,
+    .featuredPostContent &{
+      min-width:0;
     }
-    
-    .hero &{
-      width:auto;
-      max-width:100%;
-      margin-bottom:0;
+  }
+
+}
+
+button {
+
+  .inlineFormElements &{
+    border:0;
+    background-color:$smoke;
+    color:$darkGray;
+    position: absolute;
+    display: inline-block;
+    width:40px;
+    text-align:right;
+    right:0;
+    bottom:1px;
+    padding: 9px 6px 9px 0;
+
+    &:hover{
+      color:$oregano;
     }
   }
 }

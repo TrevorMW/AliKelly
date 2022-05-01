@@ -6,44 +6,48 @@
 
 get_header(); ?>
 
-<div class="primary" role="structure">
-  <section class="page">
 
-    <?php if ( have_posts() ) : ?>
-
-      <header class="page-header">
-        <h1 class="page-title" role="heading">
-  	  	  <?php printf( __( 'Search Results for: %s', 'themename' ), '<span>' . get_search_query() . '</span>' ); ?>
+<div class="blogPostsTools">
+  <div class="container ">
+    <div class="container flexed">
+      <header class="pageHeader searchPageHeader">
+        <h1 class="pageTitle" role="heading">
+          <?php printf( __( 'Search Results for: %s', 'themename' ), '<span>"' . get_search_query() . '"</span>' ); ?>
         </h1>
       </header>
-      
-      <div class="page-content">
+      <?php dynamic_sidebar('blog');?>
+    </div>
+    <hr />
+  </div> 
+</div>
+
+<div class="container flexed">
+  <div class="primary" role="structure">
+    
+    <?php if ( have_posts() ) : ?>
+
+      <div class="blogPostGrid">
         <?php get_template_part( 'loop', 'search' ); ?>
       </div>
 
     <?php else : ?>
 
-      <article class="post">
-        
-        <header class="post-header">
-          <h1 class="post-title" role="heading">
-            <?php _e( 'Nothing Found', 'themename' ); ?>
-          </h1>
-        </header>
-        
-        <div class="post-content">
-          <p>
-            <?php _e( 'Sorry, but nothing matched your search criteria. Please try again .', 'themename' ); ?>
-          </p>
-        </div>
+      <div class="noPosts">
+        <p>
+          <?php _e( 'Sorry, but nothing matched your search criteria. Please try again .', 'themename' ); ?>
+        </p>
+      </div>
 
-      </article>
-    
     <?php endif; ?>
+  </div>
+</div>
+<?php if ( $wp_query->max_num_pages > 1 ) :?>
+  <div class="wrapper pagination paginationBlog">
+    <div class="container ">
+    <hr />
+      <?php echo build_pagination($wp_query, $paged); ?>
+    </div>
+  </div>
+<?php endif; ?>
 
-  </section>
-</div>
-<div class="secondary" role="structure">
-  <?php dynamic_sidebar('blog');  ?> 
-</div>
 <?php get_footer(); ?>

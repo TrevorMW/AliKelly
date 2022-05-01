@@ -9,14 +9,16 @@
 
 get_header(); the_post(); ?>
 
-<div class="primary">
+<div class="container small">
   <section class="page" role="article">
-    <header class="page-header">
-      <h1 class="page-title" role="heading">
+    <header class="pageHeader">
+      <h1 class="pageTitle" role="heading">
         <?php the_title(); ?>
       </h1>
     </header>
-    <div class="page-content">
+    <hr />
+
+    <div class="pageContent">
       <?php the_content(); ?>
     </div>
   </section>

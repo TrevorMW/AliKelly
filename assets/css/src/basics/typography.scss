@@ -35,21 +35,39 @@ p{
 }
 
 p{
-  margin:0;
+  margin:0 0 21px 0;
   line-height:inherit;
+
+  .pageContent &{
+    margin-bottom:28px;
+  }
 
   .hero &{
     font-size:1.215rem;
     line-height:30px;
   }
 
-  .subFooter &{
+  footer &{
     margin-bottom:0;
+    font-family:$heading;
+    color:darken($sand, 15%);
   }
 
-  .mainContent &,
-  .introBlock &{
-    margin-bottom:21px;
+  .introText & ,
+  .getInContact &{
+    margin-bottom:48px;
+    font-size: 1.3rem;
+  }
+
+  .postContent &{
+    color:$darkGray;
+  }
+
+  .contactMethods &{
+    display: block;
+    padding: 14px 0;
+    font-size:1.4rem;
+    font-style:italic;
   }
 
   @media only screen and (min-width:768px){
@@ -58,73 +76,100 @@ p{
       font-size:1.476rem;
       line-height:30px;
     }
+
+    .contactMethods &{
+      display: block;
+      padding: 14px 0 28px;
+      margin: 0;
+    }
   }
 }
 
 a,
 a:visited{
   transition:color .5s ease;
+  
+  .pageContent &{
+    color:$sage;
+
+    &:hover{
+      color:darken($sage, 8%);
+    }
+  }
+}
+
+em{
+
+  .heroBody &{
+    color:#555;
+    margin-top:14px;
+    display: block;
+  }
 }
 
 h1,h2,h3,h4,h5,h6{
-  font-family: $heading;
+  font-family: $special;
   margin:0;
   font-weight:500;
   letter-spacing:2px;
   line-height:1;
-  text-transform:uppercase;
-  margin-bottom:14px;
+  text-transform:capitalize;
 
-  .hero &{
-    font-size:2.8rem;
-    line-height:55px;
+  .pageContent &{
+    margin-bottom:21px;
   }
 
   @media only screen and (min-width:768px){
     
-    .hero &{
-      font-size:4.8rem;
-      line-height:85px;
-      
-    }
   }
 }
 
 
 h1{
+  font-size:2.8rem;
+  line-height:1.28;
+  color:$darkGray;
+  font-family:$special;
 
-  .basicHero &{
-    font-size:2.8rem;
-    line-height:48px;
+  .searchPageHeader &{
+    font-size:1.8rem;
+    line-height:1.25;
+    letter-spacing:1px;
+    margin-bottom:35px;
+
+    & span{
+      color:$oregano;
+    }
+  }
+
+  &.postTitle{
+    font-size:1.4rem;
+    line-height:1.25;
+    letter-spacing:1px;
+  }
+
+  .blogPostsTools &{
+    font-size:1.5rem;
+    line-height:1;
+  }
+
+  @media only screen and (min-width:768px){
+
+    .searchPageHeader &{
+      margin-bottom:0;
+    }
   }
 }
 
 h2{
   font-size:2.5rem;
-  line-height:46px;
+  line-height:1.24;
 
   .introBlock &{
     position: relative;
-    margin-bottom:28px;
-    color:$darkRed;
-
-    &:before,
-    &:after{
-      content:"";
-      position: absolute;
-      width:50%;
-      height:3px;
-      left:50%;
-      transform:translateX(-50%);
-      border-top:1px solid #ddd;
-      top:calc(100% + 13px);
-    }
-
-    &:after{
-      content:"";
-      width:40%;
-      top:calc(100% + 17px);
-    }
+    margin:38px 0;
+    color:$darkGray;
+    font-size:2.2rem;
   }
 
   .ctaBar &{
@@ -132,64 +177,59 @@ h2{
     font-size:2rem;
   }
 
-  
+  .introHeader &{
+    color:$oregano;
+  }
+
+  .heroBody &{
+    font-size:1.75rem;
+    line-height:1.3;
+    color:$sage;
+  }
 
   @media only screen and (min-width:768px){
-    
+
     .introBlock &{
-      margin-bottom:14px;
-  
-      &:before,
-      &:after{
-        display: none;
-      }
+      font-size:2.5rem;
     }
 
   }
 }
 
 h3{
+  font-size:2.0rem;
+  line-height:1.22;
+
+  .getInContact &{
+    
+  }
 
 }
 
 h4{
+  font-size:1.5rem;
+  line-height:1.18;
+
+  .featuredPost &{
+    font-size:2rem;
+    color:darken($sage, 30%);
+  }
+
+  .featuredPostContent &{
+    margin-bottom:21px;
+    font-size:1.5rem;
+    color:$darkGray;
+  }
 
 }
 
 h5{
-
+  font-size:1.3rem;
+  line-height:1.15;
 }
 
 h6{
-
-}
-
-.mainContent{
-
-  & h2{
-    text-transform:capitalize;
-    color:$darkRed;
-  }
-
-  & .servicesList  h2{
-    color:#fff;
-    font-family:$base;
-    font-size:1.4rem;
-    letter-spacing: 0;
-
-  }
-
-  & h3, 
-  & h4, 
-  & h5{
-    font-family:$base;
-    text-transform:capitalize;
-    color:$darkGray;
-  }
-
-  & h3{
-    
-  }
-
+  font-size:1.1rem;
+  line-height:1.11;
 
 }

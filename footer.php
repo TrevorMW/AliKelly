@@ -7,15 +7,24 @@
 
 </main>
 
-<footer class="wrapper smoke footerBar">
-	<div class="container centered">
+<footer class="wrapper linen footerBar">
+	<div class="container flexed">
 		<div>
 			<p>
 				Copyright &copy; <?php echo date("Y"); ?> Ali Kelly
 			</p>	
 		</div>
+
+		<div class="socialMediaOutlets">
+			<ul>
+				<li><a href=""><i class="fa fa-fw fa-facebook"></i></a></li>
+				<li><a href=""><i class="fa fa-fw fa-linkedin"></i></a></li>
+			</ul>
+		</div>
 	</div>
 </footer>
+
+
 
 <div data-mobile-nav>
 	<div data-mobile-nav-close>
