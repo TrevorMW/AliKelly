@@ -1,4 +1,4 @@
-<?php define('THEME_VERSION', '1.0.0.0');
+<?php define('THEME_VERSION', '1.0.0.1');
 
 
 /**
