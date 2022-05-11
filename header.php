@@ -10,7 +10,10 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<title><?php echo site_global_description(); ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/assets/media/favicon.ico">
+	<link rel="icon" href="https://secureservercdn.net/104.238.68.196/56x.ebb.myftpupload.com/wp-content/uploads/2021/03/cropped-ali-site-icon-32x32.png" sizes="32x32">
+	<link rel="icon" href="https://secureservercdn.net/104.238.68.196/56x.ebb.myftpupload.com/wp-content/uploads/2021/03/cropped-ali-site-icon-192x192.png" sizes="192x192">
+	<link rel="apple-touch-icon" href="https://secureservercdn.net/104.238.68.196/56x.ebb.myftpupload.com/wp-content/uploads/2021/03/cropped-ali-site-icon-180x180.png">
+	<meta name="msapplication-TileImage" content="https://secureservercdn.net/104.238.68.196/56x.ebb.myftpupload.com/wp-content/uploads/2021/03/cropped-ali-site-icon-270x270.png">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<?php wp_head(); ?>
