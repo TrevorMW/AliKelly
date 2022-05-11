@@ -117,11 +117,6 @@ function add_style_sheets()
   if (!is_admin()) {
     wp_enqueue_style('reset', get_template_directory_uri() . '/style.css', 'screen');
     wp_enqueue_style('fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', 'screen');
-    // wp_enqueue_style(
-    //   'googleFonts',
-    //   '//fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@1,400;1,500&family=Montserrat:wght@300;400;600&display=swap',
-    //   'screen'
-    // );
 
     // On login page only
     wp_enqueue_style('main', get_template_directory_uri() . '/assets/css/build/core.min.css', array(), false, 'screen');
@@ -152,7 +147,7 @@ function add_javascript()
   if (!is_admin()) {
     wp_enqueue_script(
       'jquery',
-      '//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js',
+      '//ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js',
       null,
       true,
       null
@@ -171,8 +166,6 @@ function add_javascript()
       'baseUrl' => $app_base,
       'deps'    => array($app_base . $depURL)
     ));
-
-    
   }
 }
 add_action('wp_enqueue_scripts', 'add_javascript');
@@ -272,6 +265,30 @@ add_image_size('mobile', 768, 768, true);
 add_image_size('phone', 480, 480, true);
 add_image_size('mini-thumbnail', 50, 50, true);
 
+
+// REMOVE FRONTEND GUTENBERG CSS LOAD
+
+function smartwp_remove_wp_block_library_css(){
+  wp_dequeue_style( 'wp-block-library' );
+  wp_dequeue_style( 'wp-block-library-theme' );
+  wp_dequeue_style( 'wc-blocks-style' ); // Remove WooCommerce block CSS
+} 
+add_action( 'wp_enqueue_scripts', 'smartwp_remove_wp_block_library_css', 100 );
+
+
+/**
+ * Disable jQuery Migrate in WordPress.
+ *
+ * @author Guy Dumais.
+ * @link https://en.guydumais.digital/disable-jquery-migrate-in-wordpress/
+ */
+add_filter( 'wp_default_scripts', $af = static function( &$scripts) {
+  if(!is_admin()) {
+      $scripts->remove( 'jquery');
+      $scripts->add( 'jquery', false, array( 'jquery-core' ), '1.12.4' );
+  }    
+}, PHP_INT_MAX );
+unset( $af );
 
 // ADDS SUPPORT FOR CUSTOM EDITOR STYLES THAT LET CLIENTS USE THE WYSIWYG EDITOR BETTER. UNCOMMENT IF YOU NEED THEM.
 

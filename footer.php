@@ -3,7 +3,8 @@
  * @package WordPress
  * @subpackage themename
  */
-?>
+
+$home = new Homepage($post->ID); ?>
 
 </main>
 
@@ -17,8 +18,7 @@
 
 		<div class="socialMediaOutlets">
 			<ul>
-				<li><a href=""><i class="fa fa-fw fa-facebook"></i></a></li>
-				<li><a href=""><i class="fa fa-fw fa-linkedin"></i></a></li>
+				<?php echo $home->getSocialMediaOutlets(); ?>
 			</ul>
 		</div>
 	</div>
@@ -28,14 +28,17 @@
 
 <div data-mobile-nav>
 	<div data-mobile-nav-close>
-		<div>
-			<a href="<?php echo home_url(); ?>"><i class="fa fa-home"></i></a>
+		<div class="socialMediaOutlets">
+			<ul>
+				<?php echo $home->getSocialMediaOutlets(); ?>
+			</ul>
 		</div>
 		<div>
 			<a href="" data-mobile-nav-close-trigger>&times;</a>
 		</div>
 	</div>
 	<nav>
+	<hr /> 
 		<ul>
 			<?php wp_nav_menu(array(
 				'menu'           => 'mobile-nav',

@@ -5,13 +5,13 @@
  * @author      Trevor Wagner
  */
  export default class MobileNav{
+
     constructor() {
         this.mobileNav = {
             trigger:null,
             el:null,
             navPanel:null,
             destroy:null,
-            signout:null
         }
 
         this.init();
@@ -30,16 +30,11 @@
 
             if(panel.length > 0){
                 const destroy = $('[data-mobile-nav-close-trigger]');
-                const signout = $('[data-sign-out]');
            
                 self.mobileNav.el = panel;
 
                 if(destroy.length > 0){
                     self.mobileNav.destroy = destroy;
-                }
-
-                if(signout.length > 0 ){
-                    self.mobileNav.signout = signout;
                 }
 
                 this.setObservers();
